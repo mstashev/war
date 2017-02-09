@@ -1,29 +1,25 @@
 class Card
   include Comparable
+
+  def self.faces
+    ("2".."10").to_a + %w(J Q K A)
+  end
+
+  def self.suits
+    %w(Clubs Spades Diamonds Hearts)
+  end
+
   attr_accessor :suit, :face, :value
 
   def initialize(suit, face)
     @suit = suit
     @face = face
-    @value = setValue[face]
+    @value = setValue
   end
 
+
   def setValue
-    values = Hash.new
-    values['A'] = 14
-    values['K'] = 13
-    values['Q'] = 12
-    values['J'] = 11
-    values[10] = 10
-    values[9] = 9
-    values[8] = 8
-    values[7] = 7
-    values[6] = 6
-    values[5] = 5
-    values[4] = 4
-    values[3] = 3
-    values[2] = 2
-    values
+    self.class.faces.index(face) + 2
   end
 
   def <=>(other)

@@ -5,24 +5,24 @@ class CardTest < MiniTest::Test
 
   def test_ace_equal_fourteen
     card = Card.new("Clubs","A")
-    assert_equal 14, card.value
+    assert_equal "14", card.value
   end
 
   def test_king_equal_thirteen
     card = Card.new("Clubs","K")
-    assert_equal 13, card.value
+    assert_equal "13", card.value
 
   end
 
   def test_queen_equal_twelve
     card = Card.new("Clubs","Q")
-    assert_equal 12, card.value
+    assert_equal "12", card.value
 
   end
 
   def test_jack_equal_eleven
     card = Card.new("Clubs","J")
-    assert_equal 11, card.value
+    assert_equal "11", card.value
 
   end
 
@@ -30,7 +30,7 @@ class CardTest < MiniTest::Test
     card = Card.new("Clubs","A")
     assert_equal "Clubs", card.suit
     assert_equal "A", card.face
-    assert_equal 14, card.value
+    assert_equal "14", card.value
   end
 
   def test_card_can_be_compared_greater
