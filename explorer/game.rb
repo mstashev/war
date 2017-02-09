@@ -5,7 +5,7 @@ require_relative 'deck'
 class Game
 
   #2 player decks
-  attr_accessor :p1deck, :p2deck, :prompt, :p1card, :p2card, :p1winnings, :p2winnings, :discard, :num_games
+  attr_accessor :p1deck, :p2deck, :prompt, :p1card, :p2card, :p1winnings, :p2winnings, :discard, :num_games, :num_wars
 
   def initialize
     @prompt = TTY::Prompt.new
@@ -16,7 +16,8 @@ class Game
     @p1winnings = []
     @p2winnings = []
     @discard = []
-    @num_games = 0.to_i
+    @num_games = 0
+    @num_wars = 0
   end
 
 
@@ -31,11 +32,8 @@ class Game
       if p2card == nil
         puts "P1 won."
       end
-
-      puts @num_games
+      # puts @num_games
       determine_winner
-
-
     # else
     #   end_game
     # end
@@ -77,6 +75,7 @@ class Game
       puts "You tied. Discard both cards"
       discard << p1card
       discard << p2card
+      @num_wars += 1
       # puts "Discard pile: #{discard.inspect}"
       @num_games += 1
     else
@@ -86,33 +85,31 @@ class Game
   end
 
 
-def play_game
-  # if p1deck.cards.count == 0 && p1winnings.length != 0
-  #   p1deck.cards << p1winnings
-  # elsif p2deck.cards.count == 0 && p2winnings .length!= 0
-  #   p2deck.cards << p2winnings
-  # else
-    if p1deck.cards.length == 0 && p1winnings.length != 0
-      puts "Player 2 won this game after #{num_games}"
-    elsif p2deck.cards.length == 0 && p2winnings.length != 0
-      puts "Player 2 won this game after #{num_games}"
-    else
-      play # puts "Everyone lost!"
-    end
-  # end
-  # play
-end
-
-
+  def play_game
+    # if p1deck.cards.count == 0 && p1winnings.length != 0
+    #   p1deck.cards << p1winnings
+    # elsif p2deck.cards.count == 0 && p2winnings .length!= 0
+    #   p2deck.cards << p2winnings
+    # else
+      if p1deck.cards.length == 0 && p1winnings.length != 0
+        puts "Player 2 won this game after #{num_games} rounds and #{num_wars} wars."
+      elsif p2deck.cards.length == 0 && p2winnings.length != 0
+        puts "Player 2 won this game after #{num_games} rounds and #{num_wars} wars"
+      else
+        play # puts "Everyone lost!"
+      end
+    # end
+    # play
+  end
 
   # def ask_for_rematch
   #   # if prompt.yes?("Would you like a rematch?")
   # end
 
-  def end_game
-    puts "Goodbye"
-    exit
-  end
+  # def end_game
+  #   puts "Goodbye"
+  #   exit
+  # end
 end
 
 Game.new.play
