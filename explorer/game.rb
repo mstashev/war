@@ -58,7 +58,7 @@ class Game
   end
 
   def determine_winner
-    puts self.inspect
+    # puts self.inspect
     if p1_win?(p1card,p2card)
       puts "Player 1 won"
       p1winnings << p1card
