@@ -1,10 +1,11 @@
 class Card
-  attr_accessor :suits, :faces, :values
+  include Comparable
+  attr_accessor :suit, :face, :value
 
-  def initialize(suits, faces)
-    @suits = suits
-    @faces = faces
-    @values = setValue[faces]
+  def initialize(suit, face)
+    @suit = suit
+    @face = face
+    @value = setValue[face]
   end
 
   def setValue
@@ -23,6 +24,10 @@ class Card
     values[3] = 3
     values[2] = 2
     values
+  end
+
+  def <=>(other)
+    value <=> other.value
   end
 
 end

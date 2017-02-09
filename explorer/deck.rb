@@ -13,15 +13,15 @@ class Deck
         cards << Card.new(suit, face)
       end
     end
-    shuffle_cards
-  end
-
-  def shuffle_cards
-    @cards.shuffle!
+    cards.shuffle!
   end
 
   def draw
     @cards.shift
+  end
+
+  def dry?
+    cards.empty?
   end
 
 end
